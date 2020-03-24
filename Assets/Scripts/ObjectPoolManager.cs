@@ -9,13 +9,6 @@ public class ObjectPoolManager : MonoBehaviour {
     void Awake() {
         instance = this;
     }
-
-    void Start() {
-    }
-
-    void Update() {
-
-    }
     /// <summary>
     /// 提供了一个从对象池中获取gameObject和放回gameObject的方法 当需要获取一个物体时
     /// 会首先通过这个物体的名字进行一次判断，如果字典中已经存在了存放该名字的栈且栈内元素的个数大于0时
@@ -60,6 +53,7 @@ public class ObjectPoolManager : MonoBehaviour {
             pool.Add(key, new Stack());
             pool[key].Push(go);
         }
+        go.GetComponent<Rigidbody>().velocity = Vector3.zero;
         go.gameObject.SetActive(false);
     }
 }
